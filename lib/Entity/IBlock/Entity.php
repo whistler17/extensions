@@ -72,6 +72,11 @@ abstract class Entity extends Base
         return $this->getField(sprintf('PROPERTY_%s_VALUE', $key));
     }
 
+    public function getPropertyValueHTML($key)
+    {
+        return $this->getField(sprintf('~PROPERTY_%s_VALUE', $key));
+    }
+
     public function setProperties($propertyFilter = [])
     {
         $rsProperties = CIBlockElement::GetProperty(

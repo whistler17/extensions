@@ -39,7 +39,7 @@ if (!function_exists('getDirectoryChildren')) {
 $formattedClassFiles = [];
 foreach (getDirectoryChildren('', $parent) as $classFile) {
     $class = $prefix . str_replace('/', '\\', $classFile);
-    $class = substr($class, 0, strpos($class, '.'));
+    $class = mb_substr($class, 0, mb_strpos($class, '.'));
 
     $formattedClassFiles[$class] = str_replace('//', '/', $parent . $classFile);
 }

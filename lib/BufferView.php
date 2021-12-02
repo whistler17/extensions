@@ -57,7 +57,7 @@ class BufferView
     {
         application()->AddViewContent($viewName, $content);
 
-        if (strlen($this->currentView['group']) > 0) {
+        if (mb_strlen($this->currentView['group']) > 0) {
             $this->groups[$this->currentView['group']][] = $this->currentView['name'];
         } else {
             $this->views[] = $viewName;
@@ -72,7 +72,7 @@ class BufferView
      */
     public function isViewExists(string $viewName)
     {
-        return (strlen($viewName) > 0 && in_array($viewName, $this->views));
+        return (mb_strlen($viewName) > 0 && in_array($viewName, $this->views));
     }
 
     /**
@@ -81,7 +81,7 @@ class BufferView
      */
     public function isGroupExists(string $groupName)
     {
-        return (strlen($groupName) > 0 && array_key_exists($groupName, $this->groups));
+        return (mb_strlen($groupName) > 0 && array_key_exists($groupName, $this->groups));
     }
 
     /**

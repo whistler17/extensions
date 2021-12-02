@@ -15,13 +15,13 @@ if (!function_exists('only_digits')) {
 
         $digits = (!empty($matches)) ? implode('', $matches[0]) : '';
 
-        if (strlen($digits) <= 0 || !is_numeric($length)) {
+        if (mb_strlen($digits) <= 0 || !is_numeric($length)) {
             return $digits;
         }
 
         return ($length > 0) ?
-            substr($digits, 0, $length) : // Первые n
-            substr($digits, $length); // Последние n
+            mb_substr($digits, 0, $length) : // Первые n
+            mb_substr($digits, $length); // Последние n
     }
 }
 
@@ -208,8 +208,8 @@ if (!function_exists('get_plural_word')) {
      */
     function get_plural_word(int $count, $v0 = 'предметов', $v1 = 'предмет', $v2 = 'предмета')
     {
-        $l2 = substr($count, -2);
-        $l1 = substr($count, -1);
+        $l2 = mb_substr($count, -2);
+        $l1 = mb_substr($count, -1);
 
         if ($l2 > 10 && $l2 < 20) {
             return $v0;

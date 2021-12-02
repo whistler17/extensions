@@ -13,7 +13,7 @@ class Section
     {
         check_modules('iblock');
 
-        if ($iBlock && !is_numeric($iBlock) && strlen($iBlock) > 0) {
+        if ($iBlock && !is_numeric($iBlock) && mb_strlen($iBlock) > 0) {
             $iBlock = get_iblock_id($iBlock);
         }
 

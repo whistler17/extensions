@@ -1,14 +1,18 @@
 {
   "name": "itgro/extensions",
-  "description": "Помощник при работе с 1С-Битрикс",
+  "description": "Помощник при работе с 1С-Битрикс (>20.100.0)",
   "license": "MIT",
-  "version": "1.7.0",
-  "version_date": "07.06.2019",
+  "version": "1.7.1",
+  "version_date": "02.12.2021",
   "type": "itgro-module",
   "authors": [
     {
       "name": "Anatolii Bibanaev",
       "email": "bae@itgro.ru"
+    },
+    {
+      "name": "Pavel Nikolaev",
+      "email": "npt@itgro.ru"
     }
   ],
   "require": {

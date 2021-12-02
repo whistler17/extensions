@@ -49,7 +49,7 @@ abstract class Base
         ];
 
         foreach ($aliases as $search => $method) {
-            if (strpos($name, $search) === 0) {
+            if (mb_strpos($name, $search) === 0) {
                 $name = str_ireplace($search, '', $name);
 
                 $name = mb_strtolower(mb_substr($name, 0, 1)) . mb_substr($name, 1);

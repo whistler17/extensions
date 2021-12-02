@@ -86,6 +86,6 @@ trait WithAdditionalExtensions
 
     private function isScriptLike($script)
     {
-        return (strpos(request()->getScriptFile(), $script) !== false);
+        return (mb_strpos(request()->getScriptFile(), $script) !== false);
     }
 }

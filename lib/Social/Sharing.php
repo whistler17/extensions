@@ -76,14 +76,14 @@ class Sharing
             $image['src'] = array_get($image, 'SRC');
         }
 
-        $this->image = (!empty($image) && strlen(array_get($image, 'src')) > 0) ?
+        $this->image = (!empty($image) && mb_strlen(array_get($image, 'src')) > 0) ?
             $this->formatUrl(array_get($image, 'src')) :
             null;
     }
 
     private function formatUrl($url)
     {
-        if (stripos($url, '://') !== false) {
+        if (mb_stripos($url, '://') !== false) {
             return $url;
         }
 

@@ -13,11 +13,11 @@ class PropertyEnum
     {
         check_modules('iblock');
 
-        if ($iBlock && !is_numeric($iBlock) && strlen($iBlock) > 0) {
+        if ($iBlock && !is_numeric($iBlock) && mb_strlen($iBlock) > 0) {
             $iBlock = get_iblock_id($iBlock);
         }
 
-        if ($property && !is_numeric($property) && strlen($property) > 0) {
+        if ($property && !is_numeric($property) && mb_strlen($property) > 0) {
             $property = get_property_id($property, $iBlock);
         }
 

@@ -34,7 +34,7 @@ class Router
 
     private static function getRoutesPath()
     {
-        if (defined('EXTENSIONS_ROUTES_PATH') && strlen(EXTENSIONS_ROUTES_PATH) > 0) {
+        if (defined('EXTENSIONS_ROUTES_PATH') && mb_strlen(EXTENSIONS_ROUTES_PATH) > 0) {
             return EXTENSIONS_ROUTES_PATH;
         }
 

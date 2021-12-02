@@ -13,11 +13,11 @@ class Enumeration
     {
         check_modules('iblock');
 
-        if ($highloadBlock && !is_numeric($highloadBlock) && strlen($highloadBlock) > 0) {
+        if ($highloadBlock && !is_numeric($highloadBlock) && mb_strlen($highloadBlock) > 0) {
             $highloadBlock = get_highload_iblock_id($highloadBlock);
         }
 
-        if ($userField && !is_numeric($userField) && strlen($userField) > 0) {
+        if ($userField && !is_numeric($userField) && mb_strlen($userField) > 0) {
             $userField = get_user_field_id($userField, $highloadBlock);
         }
 

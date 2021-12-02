@@ -42,8 +42,12 @@ if (!function_exists('get_ip')) {
 }
 
 if (!function_exists('is_ajax')) {
-    function is_ajax()
+    function is_ajax(): bool
     {
-        return (request()->getHeader('X-Requested-With') == 'XMLHttpRequest');
+        try {
+            return (request()->getHeader('X-Requested-With') == 'XMLHttpRequest');
+        } catch (Throwable $e) {
+            return false;
+        }
     }
 }

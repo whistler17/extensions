@@ -55,7 +55,9 @@ class BufferView
      */
     public function add(string $viewName, $content)
     {
-        application()->AddViewContent($viewName, $content);
+        if (!application()->GetViewContent($viewName)) {
+            application()->AddViewContent($viewName, $content);
+        }
 
         if (mb_strlen($this->currentView['group']) > 0) {
             $this->groups[$this->currentView['group']][] = $this->currentView['name'];

@@ -245,3 +245,29 @@ if (!function_exists('upper')) {
         return call_user_func($function, $string);
     }
 }
+
+if (!function_exists('random_string')) {
+    /**
+     * @param int $length
+     * @param bool $only_digits
+     * @return string
+     * @throws Exception
+     */
+    function random_string($length = 10, $only_digits = false)
+    {
+        if ($only_digits){
+            $letters = '0123456789';
+        } else {
+            $letters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        }
+
+        $maxLetters = mb_strlen($letters);
+
+        $result = '';
+        for ($i = 0; $i < $length; $i++) {
+            $result .= $letters[random_int(0, $maxLetters - 1)];
+        }
+
+        return $result;
+    }
+}

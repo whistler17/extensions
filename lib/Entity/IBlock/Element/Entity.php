@@ -1,8 +1,9 @@
 <?php
 
-namespace Itgro\Entity\IBlock;
+namespace Itgro\Entity\IBlock\Element;
 
 use CIBlockElement;
+use Itgro\CanCreatedAsEntity;
 
 /**
  * Представляет собой обёртку обычного выборщика из ИБ, но с оборачиванием в сам класс сущности
@@ -12,44 +13,11 @@ use CIBlockElement;
  */
 abstract class Entity extends Base
 {
-    private $id;
-    private $fields;
-
-    private $related = [];
-
-    public static function create($id, $fields = []): self
-    {
-        $entity = new static();
-
-        $entity->setId($id);
-        $entity->setFields($fields);
-
-        return $entity;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
+    use CanCreatedAsEntity;
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setFields($fields)
-    {
-        $this->fields = $fields;
-    }
-
-    public function getField($key)
-    {
-        return (!empty($this->fields)) ? array_get($this->fields, $key) : null;
-    }
-
-    public function setField($key, $value = null)
-    {
-        $this->fields[$key] = $value;
     }
 
     public function getPropertyEnum($key)
@@ -92,16 +60,6 @@ abstract class Entity extends Base
                 $this->setMultipleProperty($property) :
                 $this->setProperty($property);
         }
-    }
-
-    public function setRelated($field, $entity)
-    {
-        $this->related[$field] = $entity;
-    }
-
-    public function getRelated($field)
-    {
-        return array_get($this->related, $field);
     }
 
     protected function setRelatedProperty(array $items, string $column, $callback)

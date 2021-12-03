@@ -1,16 +1,17 @@
 <?php
 
-namespace Itgro\Entity\IBlockSection;
+namespace Itgro\Entity\IBlock\Section;
 
-use Itgro\Entity\IBlock\Base as IBlockBase;
+use Exception;
+use Itgro\Entity\IBlock\Base as BaseIBlockEntity;
 
-abstract class Base extends IBlockBase
+abstract class Base extends BaseIBlockEntity
 {
-    protected function getObjects(): CDBResult
+    protected function getObjects(): \CDBResult
     {
         $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
         return $CIBlockSection->GetList(
             $this->getOrder(),
             $this->getFilter(),
@@ -24,11 +25,11 @@ abstract class Base extends IBlockBase
     {
         $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
         return $CIBlockSection->GetCount($this->filter);
     }
 
-    public function add($fields): int
+    public function add($fields): \Bitrix\Main\ORM\Data\AddResult
     {
         $fields = array_merge(
             [
@@ -38,7 +39,7 @@ abstract class Base extends IBlockBase
             $fields
         );
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
 
         $result = $CIBlockSection->Add($fields);
 

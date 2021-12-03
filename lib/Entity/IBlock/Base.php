@@ -19,8 +19,14 @@ abstract class Base extends BaseEntity
 
     public function __construct()
     {
-        if (!Loader::includeModule('iblock')) {
-            throw new Exception('Ошибка во время подключения модуля информационных блоков');
+        try {
+            check_modules('iblock');
+
+            if (empty($this->iBlockCode)) {
+                throw new Exception('Поле iBlockCode должно быть заполнено');
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
     }
 
@@ -34,53 +40,12 @@ abstract class Base extends BaseEntity
         return $this->iBlockCode;
     }
 
-    protected function getObjects(): CDBResult
-    {
-        $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
-
-        $CIBlockElement = new CIBlockElement();
-        return $CIBlockElement->GetList(
-            $this->getOrder(),
-            $this->getFilter(),
-            $this->getGroupBy(),
-            $this->getNavParams(),
-            $this->getSelect()
-        );
-    }
-
     protected function expandOneItemParameters()
     {
         $this->expandNavParams(['nTopCount' => 1]);
     }
 
-    public function getCount(): int
-    {
-        $this->withGroupBy([]);
+    abstract public function getCount();
 
-        $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
-
-        $CIBlockElement = new CIBlockElement();
-        return $CIBlockElement->GetList($this->order, $this->filter, $this->groupBy);
-    }
-
-    public function add($fields): int
-    {
-        $fields = array_merge(
-            [
-                'ACTIVE' => 'Y',
-                'IBLOCK_ID' => $this->getIBlockId(),
-            ],
-            $fields
-        );
-
-        $CIBlockElement = new CIBlockElement();
-
-        $result = $CIBlockElement->Add($fields);
-
-        if (!$result) {
-            throw new Exception($CIBlockElement->LAST_ERROR);
-        }
-
-        return $result;
-    }
+    abstract public function add($fields);
 }

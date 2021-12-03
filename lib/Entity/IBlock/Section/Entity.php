@@ -1,6 +1,6 @@
 <?php
 
-namespace Itgro\Entity\IBlockSection;
+namespace Itgro\Entity\IBlock\Section;
 
 use Itgro\CanCreatedAsEntity;
 

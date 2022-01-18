@@ -1,11 +1,12 @@
 <?php
 
 include_once('helpers/array.php');
+include_once('helpers/bool.php');
+include_once('helpers/string.php');
 include_once('helpers/debug.php');
 include_once('helpers/event.php');
 include_once('helpers/file.php');
 include_once('helpers/getter.php');
-include_once('helpers/string.php');
 include_once('helpers/time.php');
 
 if (!function_exists('abort_404')) {

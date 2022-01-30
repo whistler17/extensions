@@ -50,3 +50,20 @@ if (!function_exists('get_date_for_humans')) {
         return $date->format('d.m.Y');
     }
 }
+
+if (!function_exists('format_date')) {
+    function format_date($time = false, $format = '', $now = false)
+    {
+        $timestamp = false;
+
+        if (is_numeric($time)) {
+            $timestamp = $time;
+        } elseif (is_string($time)) {
+            $timestamp = strtotime($time);
+        } elseif ($time instanceof DateTime) {
+            $timestamp = $time->getTimestamp();
+        }
+
+        return FormatDate($format, $timestamp, $now);
+    }
+}

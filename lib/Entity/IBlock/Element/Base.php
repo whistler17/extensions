@@ -6,10 +6,12 @@ use CDBResult;
 use CIBlockElement;
 use Exception;
 use Itgro\Bitrix\Admin\WithAdditionalExtensions;
-use \Itgro\Entity\IBlock\Base as BaseIBlockEntity;
+use Itgro\Entity\IBlock\Base as BaseIBlockEntity;
+use Itgro\Entity\WithRelationships;
 
 abstract class Base extends BaseIBlockEntity
 {
+    use WithRelationships;
     use WithAdditionalExtensions;
 
     protected function getObjects(): CDBResult

@@ -29,7 +29,7 @@ abstract class Base extends DataManagerBase
 
         $formatted = [];
         foreach ($items as $key => $item) {
-            $formatted[$key] = self::create(array_get($item, 'ID'), $item);
+            $formatted[$key] = self::create($item->getId(), $item->getFields());
         }
 
         return $formatted;
